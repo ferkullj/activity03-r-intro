@@ -1,6 +1,6 @@
 ---
 title: "Activity 3"
-author: "Joey Ferkull"
+author: "Joey P Ferkull"
 output: github_document
 ---
 
