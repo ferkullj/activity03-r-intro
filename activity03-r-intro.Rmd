@@ -72,7 +72,7 @@ len <- nrow(my_symbols)
 
 Comment on what you noticed about the errors and how you used this information to correct the issues.
 
-**Response**: length() gave us a count of 1, nrow() counted how many rows were in the dataset
+**Response**: length() gave us a count of 1 and this can be used to find out the length of a vector, nrow() counted how many rows were in the dataframe
 
 
 5. Create a new variable in your dataframe that assigns a number to each symbol.
@@ -112,7 +112,15 @@ Write your own code to complete the steps below.
 4. Square every number.
 
 ```{r}
-top_secret+1
+#Step 1
+top_secret <- top_secret + 14
+#Step 2
+top_secret <- top_secret * 18 - 257
+#Step 3
+top_secret <- exp(top_secret)
+#Step 4
+top_secret <- top_secret ^ 2
+
 ```
 
 **HQ UPDATE:** Headquarters has informed you that at this stage of decoding, there should be 496 numbers in the secret message that are below 17.
@@ -125,7 +133,25 @@ top_secret+1
 10. Turn your matrix back into a vector.
 
 ```{r}
+sum(top_secret < 17)
 
+# Step 5
+top_secret <- matrix(top_secret, ncol = 5)
+
+# Step 6
+evens <- seq(from = 2, to = 502, by = 2)
+
+# Step 7
+top_secret[,1] <- top_secret[,1] - evens
+
+# Step 8
+top_secret[18:24,3] <- top_secret[18:24,3] - 100
+
+# Step 9
+top_secret[,4:5] <- top_secret[,4:5] * 2
+
+# Step 10
+top_secret <- c(top_secret)
 ```
 
 **HQ UPDATE:** Headquarters has informed you that at this stage of decoding, all numbers in indices 500 and beyond are below 100.
@@ -135,7 +161,18 @@ top_secret+1
 13. Replace all instances of the number 39 with 20.
 
 ```{r}
+length(500:length(top_secret))
 
+sum(top_secret[500:length(top_secret)] < 100)
+
+# Step 11
+top_secret[38:465] <- sqrt(top_secret[38:465])
+
+# Step 12
+top_secret <- round(top_secret)
+
+# Step 13
+top_secret[top_secret == 39] <- 20
 ```
 
 **HQ UPDATE:** Headquarters has informed you that your final message should have 421 even numbers.
@@ -147,18 +184,22 @@ top_secret+1
 Use your final vector of numbers as indices for `my_symbols` to discover the final message, by running the following code:
 
 ```{r}
+# "top_secret mod 2" checks returns the remainder of dividing a number by 2
+# if this returns a 0, then the number is even
+sum( (top_secret %% 2) == 0 )
+
 stringr::str_c(my_symbols$Symbol[top_secret], collapse = "")
 ```
 
 Google the first line of this message, if you do not recognize it, to see what it is.
 
-**delete this line and comment on what on the activity as a whole**
+
 
 Comment on what you noticed about the activity as a whole.
 
 **Response**:
 
-
+This activity took a lot of effort and googling. I know I still have a lot to learn and memorize to be able to manipulate data frames to my liking
 
 Push your updated report to your `<username>` branch - you are done with this `.Rmd` file and can go back to the README directions while you wait for you Team Members.
 
